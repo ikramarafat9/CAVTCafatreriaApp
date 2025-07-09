@@ -1,0 +1,54 @@
+{% extends 'navbar.html' %}
+{% block body %}
+
+ <video autoplay muted loop class="w-100 h-100">
+    <source src="../static/image/CAVT_Video.mp4" type="video/mp4" />
+    المتصفح لا يدعم عرض الفيديو.
+  </video>
+
+  <div class="row h-25 position-fixed bottom-20px start-0 end-0 px-2 ">
+    <div class="col-md-3" title="Timer">
+        <a href="/timer" class="text-decoration-none">
+            <div class="service-card background-color-f0f0f0ba p-2 rounded-4 shadow-lg h-100 ">
+                <span class="emoji-hover">⏰</span>
+                <img src="../static/image/T1.png" class="width-50px m-1" alt="Timer" />
+                <br>
+                <label class="m-0 fw-bold fs-6 color-AB131C">Timer</label>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3" title="View Menu">
+        <a href="/menu" class="text-decoration-none">
+            <div class="service-card background-color-f0f0f0ba p-2 rounded-4 shadow-lg h-100">
+                <span class="emoji-hover">📋</span>
+                <img src="../static/image/V1.png" class="width-50px m-1" alt="Menu" />
+                <br>
+                <label class="m-0 fw-bold fs-6 color-AB131C">View Menu</label>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3" title="Account">
+        <a href="/account" class="text-decoration-none">
+            <div class="service-card background-color-f0f0f0ba p-2 rounded-4 shadow-lg h-100">
+                <span class="emoji-hover">👤</span>
+                <img src="../static/image/A1.png" class="width-50px m-1" alt="Account" />
+                <br>
+                <label class="m-0 fw-bold fs-6 color-AB131C">Account</label>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-3" title="feedback">
+        <a href="/feedback" class="text-decoration-none">
+            <div class="service-card background-color-f0f0f0ba p-2 rounded-4 shadow-lg h-100">
+                <span class="emoji-hover">💬</span>
+                <div class="d-flex justify-content-center">
+                    <img src="../static/image/C1.png" class="width-50px m-1" alt="feedback" />
+                </div>
+                <br>
+                <label class="m-0 fw-bold fs-6 color-AB131C">Give A Comments</label>
+            </div>
+        </a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8" />
+    <title>تم تأكيد الطلب</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 40px;
+            color: #333;
+            background-color: #fdfdfd;
+        }
+        h1 {
+            color: #800000;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background-color: #800000;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+        a:hover {
+            background-color: #a52a2a;
+        }
+    </style>
+</head>
+<body>
+    <h1>✅ تم تأكيد طلبك بنجاح</h1>
+    {% if order_number %}
+        <p><strong>رقم الطلب:</strong> {{ order_number }}</p>
+    {% else %}
+        <p>تم تسجيل طلبك بنجاح، شكرًا لاستخدامك تطبيق الكافتيريا ❤️</p>
+    {% endif %}
+    <a href="{{ url_for('show_menu') }}">🔙 الرجوع إلى القائمة الرئيسية</a>
+</body>
+</html>

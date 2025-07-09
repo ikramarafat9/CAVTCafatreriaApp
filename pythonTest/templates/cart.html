@@ -1,0 +1,77 @@
+{% extends 'navbar.html' %}
+{% block body %}
+
+<div class="container py-5">
+  <h2 class="text-center fw-bold mb-4 color-AB131C">🛒 سلة الطلبات</h2>
+
+  {% if cart_items %}
+    <div class="table-responsive">
+      <table class="table table-bordered align-middle shadow-sm bg-white">
+        <thead class="text-white background-color-AB131C">
+          <tr class="text-center">
+            <th>الصنف</th>
+            <th>السعر الأساسي</th>
+            <th>الكمية</th>
+            <th>التخصيص</th>
+            <th>الزيادة</th>
+            
+            <th>الإجمالي</th>
+            <th>حذف</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart_items %}
+            <tr>
+              <td>{{ item['item_name'] }}</td>
+
+              <td class="text-center">{{ "%.2f"|format(item['base_price']) }} د.أ</td>
+              <td class="text-center">{{ item['quantity'] }}</td>
+              <td>
+                {% if item['fixed_ingredients'] %}
+                  <div><strong>ثابت:</strong> {{ item['fixed_ingredients'] | join(', ') }}</div>
+                {% endif %}
+                {% if item['custom_options'] %}
+                  <div><strong>تخصيص:</strong>
+                    {% for opt in item['custom_options'] %}
+                      {{ opt['ingredient_name'] }}: {{ opt['option_name'] }}{% if not loop.last %}, {% endif %}
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                {% if item['notes'] %}
+                  <div class="small-text"><strong>ملاحظات:</strong> {{ item['notes'] }}</div>
+                {% endif %}
+              </td>
+              <td class="text-center">{{ "%.2f"|format(item['extra_price']) }} د.أ</td>
+              
+              <td class="text-center">{{ "%.2f"|format(item['total_price']) }} د.أ</td>
+              <td class="text-center">
+                <form action="{{ url_for('delete_cart_item', order_detail_id=item['order_detail_id']) }}" method="post" onsubmit="return confirm('هل أنت متأكد من حذف هذا العنصر؟');">
+                  <button type="submit" class="btn delete-button"> حذف</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert background-color-AB131C text-white text-center fw-bold fs-5 rounded-3 mt-4">
+      💰 المجموع الكلي: {{ "%.2f"|format(total) }} د.أ
+    </div>
+
+    <div class="text-center mt-4 d-flex justify-content-center flex-wrap gap-3">
+      <a href="{{ url_for('show_menu') }}" class="btn text-white background-color-AB131C rounded-3"> رجوع إلى القائمة</a>
+      <a href="{{ url_for('confirm_order') }}" class="btn text-white background-color-AB131C rounded-3"> تأكيد الطلب</a>
+    </div>
+
+  {% else %}
+    <div class="alert alert-warning text-center mt-5">
+      🚫 السلة فارغة حالياً.
+    </div>
+    <div class="text-center">
+      <a href="{{ url_for('show_menu') }}" class="btn btn-maroon px-4 rounded-pill"> رجوع إلى القائمة</a>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

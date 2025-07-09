@@ -1,0 +1,43 @@
+{% extends 'navbar.html' %}
+{% block body %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4 max-width360px w-100 rounded-4">
+    <div class="text-center mb-3">
+      <img src="{{ url_for('static', filename='image/CAVT_logo.svg') }}" alt="شعار الكلية" class="background-color-AB131C rounded p-2" width="80">
+    </div>
+    <form action="/login" method="POST">
+      <div class="mb-3">
+        <label for="phoneNumber" class="form-label">رقم الهاتف</label>
+        <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" placeholder="********07" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="لا تقل عن 8 أحرف" required>
+        <div class="text-end mt-1">
+          <a href="/forgetPassword" class="text-decoration-none fons-size14px color-AB131C">نسيت كلمة المرور؟</a>
+        </div>
+      </div>
+      <button type="submit" class="btn w-100 text-white background-color-AB131C">تسجيل الدخول</button>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div>
+            {% for message in messages %}
+              <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class="text-center mt-3">
+        <span class="fons-size14px">ليس لديك حساب؟</span>
+        <a href="signup" class="text-decoration-none fons-size14px color-AB131C fw-bold" >
+          إنشاء حساب
+        </a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

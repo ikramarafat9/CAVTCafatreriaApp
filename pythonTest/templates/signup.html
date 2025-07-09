@@ -1,0 +1,89 @@
+{% extends 'navbar.html' %}
+{% block body %}
+
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card shadow p-4 max-width360px w-100 rounded-4">
+    <div class="text-center mb-3">
+      <img src="{{ url_for('static', filename='image/CAVT_logo.svg') }}" alt="شعار الكلية" class="background-color-AB131C rounded p-2" width="80">
+    </div>
+    <form action="/signup" method="POST">
+      <div class="mb-3">
+        <label for="name" class="form-label">الاسم الكامل</label>
+        <input type="text" id="name" name="name" class="form-control" placeholder="الاسم الكامل" required>
+      </div>
+      <div class="mb-3">
+        <label for="specialty" class="form-label">التخصص</label>
+        <select id="specialty" name="specialty" class="form-select" required>
+          <option value="" disabled selected>اختر التخصص</option>
+          <optgroup label="فنون الطهي">
+            <option value="مهارات إنتاج المخبوزات والحلويات والمعجنات">مهارات إنتاج المخبوزات والحلويات والمعجنات</option>
+            <option value="صانع حلويات شرقية">صانع حلويات شرقية</option>
+            <option value="صانع حلويات غربية">صانع حلويات غربية</option>
+            <option value="صانع معجنات">صانع معجنات</option>
+          </optgroup>
+
+          <optgroup label="التجميل">
+            <option value="حلاق شعر نسائي / كوافيرة أو كوافير">حلاق شعر نسائي / كوافيرة أو كوافير</option>
+            <option value="مساعد حلاق نسائي">مساعد حلاق نسائي</option>
+            <option value="مساعد تجميل">مساعد تجميل</option>
+            <option value="مختص مكياج">مختص مكياج</option>
+          </optgroup>
+
+          <optgroup label="الإدارة">
+            <option value="منسق إداري طبي">منسق إداري طبي</option>
+          </optgroup>
+
+          <optgroup label="الرعاية الشخصية">
+            <option value="حاضنة أطفال">حاضنة أطفال</option>
+            <option value="مساعد رعاية كبار السن">مساعد رعاية كبار السن</option>
+          </optgroup>
+
+          <optgroup label="الخياطة">
+            <option value="خياط ملابس نسائية">خياط ملابس نسائية</option>
+            <option value="مشغل / آلة درزة صناعية">مشغل / آلة درزة صناعية</option>
+          </optgroup>
+
+          <optgroup label="تكنولوجيا المعلومات">
+            <option value="مدخل بيانات">مدخل بيانات</option>
+          </optgroup>
+
+          <optgroup label="البرامج الجديدة (دبلوم)">
+            <option value="مطور التطبيقات المتقدمة">مطور التطبيقات المتقدمة</option>
+            <option value="تكنولوجيا إدارة النظم والشبكات">تكنولوجيا إدارة النظم والشبكات</option>
+            <option value="صيانة أنظمة ومعدات تقنية المعلومات">صيانة أنظمة ومعدات تقنية المعلومات</option>
+            <option value="تكنولوجيا الرسم الهندسي وتطبيقاته">تكنولوجيا الرسم الهندسي وتطبيقاته</option>
+          </optgroup>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="phone" class="form-label">رقم الهاتف</label>
+        <input type="tel" id="phone" name="phone" class="form-control" placeholder="********07" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">كلمة المرور</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="لا تقل عن 8 أحرف" required>
+      </div>
+      <button type="submit" class="btn w-100 text-white background-color-AB131C">تسجيل</button>
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <div class="mt-3">
+            {% for message in messages %}
+              <p style="color: red;">{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class="text-center mt-3">
+        <span class="fons-size14px">هل لديك حساب؟</span>
+        <a href="login" class="text-decoration-none fons-size14px" style="color: #AB131C; font-weight: bold;">
+          تسجيل الدخول
+        </a>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}
